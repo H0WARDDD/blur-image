@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Blur image demo</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="../dist/blurImg.min.css">
+	<style>
+	.image-list {
+		margin: 0;
+		padding: 0;
+	}
+	
+	.image-list li {
+		float: left;
+		list-style: none;
+		margin: 0 5% 5% 0;
+		padding: 0;
+		width: 30%
+	}
+	
+	.image-list li:nth-child(3n) {
+		margin-right: 0;
+	}
+	
+	.image-list figure {
+		margin: 0;
+	}
+	</style>
+</head>
+
+<body>
+	<ul class="image-list">
+		<li>
+			<figure class="blur-image" data-original-src="images/demo-original-1.jpg" data-width="4200" data-height="2800"></figure>
+		</li>
+		<li>
+			<figure class="blur-image" data-original-src="images/demo-original-2.jpg" data-width="1920" data-height="1200"></figure>
+		</li>
+		<li>
+			<figure class="blur-image" data-original-src="images/demo-original-3.jpg" data-width="640" data-height="427"></figure>
+		</li>
+		<li>
+			<figure class="blur-image" data-preview-src="images/demo-preview-1.jpg" data-original-src="images/demo-original-1.jpg" data-width="4200" data-height="2800"></figure>
+		</li>
+		<li>
+			<figure class="blur-image" data-preview-src="images/demo-preview-2.jpg" data-original-src="images/demo-original-2.jpg" data-width="1920" data-height="1200"></figure>
+		</li>
+		<li>
+			<figure class="blur-image" data-preview-src="images/demo-preview-3.jpg" data-original-src="images/demo-original-3.jpg" data-width="640" data-height="427"></figure>
+		</li>
+	</ul>
+	<script src="../dist/blurImg.min.js"></script>
+	<script src="js/StackBlur.js"></script>
+	<script>
+	window.onload = function() {
+		BlurImg.init({
+			filter: 'canvas',
+			onPreviewLoaded: function(el) {
+				var preview = el.getElementsByTagName('img');
+				var previewID = preview[0].getAttribute('id');
+				var canvas = el.getElementsByTagName('canvas');
+				var canvasID = canvas[0].getAttribute('id');
+				stackBlurImage(previewID, canvasID, 2, false);
+			}
+		});
+	}
+	</script>
+</body>
+
+</html>
